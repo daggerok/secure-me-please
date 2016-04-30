@@ -1,0 +1,32 @@
+project.group = 'com.daggerok'
+version = 'dev'
+
+buildscript {
+  dependencies { repositories { jcenter() }
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE'
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar { baseName = 'secure-me-please' }
+
+targetCompatibility = sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories { jcenter() }
+
+dependencies {
+  compile 'org.springframework.boot:spring-boot-starter-data-rest',
+          'org.springframework.boot:spring-boot-starter-data-mongodb',
+          'de.flapdoodle.embed:de.flapdoodle.embed.mongo',
+          'org.projectlombok:lombok:1+',
+          'org.springframework.security.oauth:spring-security-oauth2',
+          'org.springframework.boot:spring-boot-starter-security'
+
+  testCompile 'org.springframework.security:spring-security-test',
+              'org.springframework.boot:spring-boot-starter-test'
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '2.12' }
